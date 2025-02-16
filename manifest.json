@@ -1,9 +1,10 @@
 {
     "name": "StudyTracker",
     "short_name": "StudyTracker",
-    "start_url": "/index.html",
+    "start_url": "/welcome.html",
     "display": "standalone",
-    "background_color": "#253342",
+    "scope": "/",
+    "background_color": "#F7F7F7",
     "description": "Track your class participations!",
     "icons": [
       {
@@ -12,5 +13,4 @@
         "type": "image/png"
       }
     ]
-  }
-  
+}
