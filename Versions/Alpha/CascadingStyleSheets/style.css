@@ -35,7 +35,7 @@ nav h2 {
 .accountInformation img{
   width: 100px;
   height: 100px;
-  border-radius: 50%;
+  border-radius: 25% !important;
   margin-bottom: 5px;
 }
 
@@ -302,6 +302,5 @@ section.actions {
   display: block;  /* Der Block wird angezeigt */
   opacity: 1;
 }
-
 
 
