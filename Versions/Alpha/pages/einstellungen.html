@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../CascadingStyleSheet/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="https://kit.fontawesome.com/61b869afa3.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,12 +24,12 @@
     <link rel="apple-touch-icon" href="icon.png">
     
     <!-- Link to manifest -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="../manifest.json">
     
     <!-- Link to Service Worker -->
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js')
+            navigator.serviceWorker.register('../JavaScript/service-worker.js')
             .then(reg => console.log('Service Worker Registered'))
             .catch(err => console.log('Service Worker Registration Failed', err));
         }
@@ -385,16 +385,16 @@ section.actions {
     <nav>
         <h2 class="titleMain">StudyTracker</h2>
         <div class="accountInformation">
-            <img src="media/icon.png">
+            <img src="media/icon.png" >
             <p style="font-size: 16px;">Welcome back,</p>
-            <h4 id="username" style="font-size: 19px;">ADMIN</h4>
+            <h4 id="username" style="font-size: 19px;">User</h4>
         </div>
         <ul>
-            <li><i class="fa-solid fa-chart-line"></i>  <a href="#">Home</a></li>
+            <li><i class="fa-solid fa-chart-line"></i>  <a href="../index.html">Home</a></li>
             <li><i class="fa-regular fa-calendar"></i>  <a href="calendar.html">Calendar</a></li>
             <li><i class="fa-solid fa-chalkboard-user"></i>  <a href="stundenplan.html">Timetable</a></li>
             <li><i class="fa-regular fa-pen-to-square"></i>  <a href="arbeiten.html">Exams</a></li>
-            <li><i class="fa-solid fa-sliders"></i>  <a href="einstellungen.html">Settings</a></li>
+            <li><i class="fa-solid fa-sliders"></i>  <a href="#">Settings</a></li>
         </ul>
     </nav>
 
