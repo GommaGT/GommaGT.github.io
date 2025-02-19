@@ -128,3 +128,19 @@ document.getElementById("saveProfile").addEventListener("click", () => {
     saveUserData(username, profilePic);
     loadUserData(); // Update immediately
 });
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    let username = localStorage.getItem("username");
+    let profilePic = localStorage.getItem("profilePic");
+
+    if (username) {
+        document.getElementById("username").textContent = username;
+    }
+
+    if (profilePic) {
+        document.getElementById("profilePicture").src = profilePic;
+    }
+});
+
