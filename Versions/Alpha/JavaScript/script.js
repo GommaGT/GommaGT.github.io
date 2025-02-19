@@ -120,3 +120,11 @@ function loadUserData() {
 
 document.addEventListener("DOMContentLoaded", loadUserData);
 
+
+document.getElementById("saveProfile").addEventListener("click", () => {
+    let username = document.getElementById("usernameInput").value;
+    let profilePic = document.getElementById("profilePicInput").value;
+
+    saveUserData(username, profilePic);
+    loadUserData(); // Update immediately
+});
