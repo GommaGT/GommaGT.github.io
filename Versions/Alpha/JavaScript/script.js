@@ -180,5 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (profilePic) {
         document.getElementById("profilePicture").src = profilePic;
     }
-});
+})
 
+                
