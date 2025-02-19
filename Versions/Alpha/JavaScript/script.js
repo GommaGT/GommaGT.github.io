@@ -104,3 +104,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+function saveUserData(username, profilePic) {
+    localStorage.setItem("username", username);
+    localStorage.setItem("profilePic", profilePic);
+}
+
+function loadUserData() {
+    let username = localStorage.getItem("username") || "USER";
+    let profilePic = localStorage.getItem("profilePic") || "/media/icon.png";
+
+    document.getElementById("username").textContent = username;
+    document.querySelector(".accountInformation img").src = profilePic;
+}
+
+document.addEventListener("DOMContentLoaded", loadUserData);
+
