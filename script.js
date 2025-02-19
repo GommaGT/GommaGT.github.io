@@ -61,3 +61,46 @@ Date.prototype.getWeek = function () {
 
 // Wöchentlicher Reset prüfen
 resetWeekly();
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    let profilePic = document.getElementById("profilePic");
+    let usernameDisplay = document.getElementById("username");
+
+    // Load saved username & profile pic from localStorage
+    let savedUsername = localStorage.getItem("username");
+    let savedProfilePic = localStorage.getItem("profilePic");
+
+    if (savedUsername) usernameDisplay.textContent = savedUsername;
+    if (savedProfilePic) profilePic.src = savedProfilePic;
+
+    // Profile update logic (only on settings page)
+    let usernameInput = document.getElementById("usernameInput");
+    let profilePicInput = document.getElementById("profilePicInput");
+    let saveProfileBtn = document.getElementById("saveProfile");
+
+    if (saveProfileBtn) {
+        saveProfileBtn.addEventListener("click", function () {
+            let newUsername = usernameInput.value.trim();
+            let newProfilePic = profilePicInput.files[0];
+
+            // Update and save username
+            if (newUsername !== "") {
+                localStorage.setItem("username", newUsername);
+                usernameDisplay.textContent = newUsername;
+            }
+
+            // Update and save profile picture
+            if (newProfilePic) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    localStorage.setItem("profilePic", e.target.result);
+                    profilePic.src = e.target.result;
+                };
+                reader.readAsDataURL(newProfilePic);
+            }
+
+            alert("Profile updated successfully!");
+        });
+    }
+});
