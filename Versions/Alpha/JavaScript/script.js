@@ -1,3 +1,41 @@
+document.addEventListener("DOMContentLoaded", () => {
+    let username = localStorage.getItem("username");
+    let profilePic = localStorage.getItem("profilePic");
+
+    let usernameElement = document.getElementById("username");
+    let profilePicElement = document.getElementById("profilePicture");
+
+    if (username && usernameElement) {
+        usernameElement.textContent = username;
+    }
+
+    if (profilePic && profilePicElement) {
+        profilePicElement.src = profilePic;
+    }
+});
+
+
+self.addEventListener("install", (event) => {
+    console.log("Service Worker Installed");
+    event.waitUntil(
+        caches.open("static").then((cache) => {
+            return cache.addAll([
+                "/",
+                "/index.html",
+                "/style.css",
+                "/script.js",
+                "/media/icon-192.png",
+                "/media/icon-512.png"
+            ]);
+        })
+    );
+});
+
+self.addEventListener("fetch", (event) => {
+    event.respondWith
+
+
+
 // Werte aus Local Storage abrufen oder auf 0 setzen
 let hourlyCount = parseInt(localStorage.getItem("hourlyCount")) || 0;
 let weeklyCount = parseInt(localStorage.getItem("weeklyCount")) || 0;
