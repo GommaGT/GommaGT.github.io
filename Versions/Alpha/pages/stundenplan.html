@@ -499,6 +499,101 @@ function deleteSubject(id) {
     localStorage.setItem("subjects", JSON.stringify(subjects));
     loadSubjects();
 }
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+    // Den Button zum Anzeigen des Formulars
+    const toggleButton = document.getElementById("toggleAddSubjectBtn");
+
+    // Das Formular, das ein- und ausgeblendet werden soll
+    const addSubjectContainer = document.getElementById("addSubjectContainer");
+
+    // Wenn der Button geklickt wird, schalte das Formular sichtbar oder unsichtbar
+    toggleButton.addEventListener("click", () => {
+        if (addSubjectContainer.style.display === "none" || addSubjectContainer.style.display === "") {
+            addSubjectContainer.style.display = "block";
+            setTimeout(() => addSubjectContainer.classList.add("visible"), 10);  // Sanfter Übergang
+        } else {
+            addSubjectContainer.classList.remove("visible");
+            setTimeout(() => addSubjectContainer.style.display = "none", 300);  // Sanfter Übergang
+        }
+    });
+
+    // Event Listener für den "Fach hinzufügen" Button
+    document.getElementById("addSubjectBtn").addEventListener("click", addSubject);
+});
+
+// Funktion zum Hinzufügen eines Fachs
+function addSubject() {
+    let subject = {
+        id: Date.now(),
+        day: document.getElementById("dayOfWeek").value,
+        name: document.getElementById("subjectName").value,
+        teacher: document.getElementById("teacherName").value,
+        room: document.getElementById("room").value,
+        notes: document.getElementById("notes").value,
+        startTime: document.getElementById("startTime").value,
+        endTime: document.getElementById("endTime").value
+    };
+
+    if (!subject.name || !subject.startTime || !subject.endTime) {
+        alert("Bitte mindestens Fachname und Zeiten eingeben!");
+        return;
+    }
+
+    let subjects = JSON.parse(localStorage.getItem("subjects")) || [];
+    subjects.push(subject);
+    localStorage.setItem("subjects", JSON.stringify(subjects));
+    loadSubjects();
+}
+
+// Funktion zum Laden der Fächer
+function loadSubjects() {
+    let subjects = JSON.parse(localStorage.getItem("subjects")) || [];
+    document.querySelectorAll(".day-column").forEach(col => {
+        col.innerHTML = `<strong>${col.id}</strong>`;
+    });
+    subjects.forEach(subject => {
+        let subjectDiv = document.createElement("div");
+        subjectDiv.classList.add("subject");
+        subjectDiv.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong>${subject.name}</strong> (${subject.startTime} - ${subject.endTime})
+                <button class="menu-btn" onclick="toggleMenu(this)" style="background: none; border: none; cursor: pointer;">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </button>
+            </div>
+            <div class="subject-menu" style="display: none; background: #fff; padding: 10px; border-radius: 5px; box-shadow: 0px 0px 5px rgba(0,0,0,0.2); margin-top: 5px;">
+                Lehrer: ${subject.teacher} <br>
+                Raum: ${subject.room} <br>
+                Notizen: ${subject.notes} <br>
+                <button class="delete-btn" data-id="${subject.id}" onclick="deleteSubject('${subject.id}')">Löschen</button>
+            </div>
+        `;
+        document.getElementById(subject.day).appendChild(subjectDiv);
+    });
+    document.querySelectorAll(".delete-btn").forEach(btn => {
+        btn.addEventListener("click", function () {
+            deleteSubject(this.getAttribute("data-id"));
+        });
+    });
+}
+
+// Funktion zum Umschalten des Menüs für jedes Fach
+function toggleMenu(btn) {
+    let menu = btn.parentElement.nextElementSibling;
+    menu.style.display = menu.style.display === "none" ? "block" : "none";
+}
+
+// Funktion zum Löschen eines Fachs
+function deleteSubject(id) {
+    let subjects = JSON.parse(localStorage.getItem("subjects")) || [];
+    subjects = subjects.filter(subject => subject.id != id);
+    localStorage.setItem("subjects", JSON.stringify(subjects));
+    loadSubjects();
+}
+
+        
     </script>
     
     
